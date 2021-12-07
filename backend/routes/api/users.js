@@ -30,6 +30,7 @@ const validateSignup = [
   handleValidationErrors
 ];
 
+//Signup
 router.post(
     '/',
     validateSignup,
