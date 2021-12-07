@@ -13,7 +13,7 @@ module.exports = {
         type: Sequelize.INTEGER,
         references: {model: "Users"}
       },
-      audioUrl: {
+      songUrl: {
         allowNull: false,
         type: Sequelize.STRING
       },
