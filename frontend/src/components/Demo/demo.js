@@ -1,15 +1,15 @@
 import React, {useState} from 'react';
 import {useDispatch} from 'react-redux';
-import login from "../..store/session";
+import * as sessionActions from "../../store/session";
 
 const DemoLogin = () => {
     const dispatch = useDispatch();
     const [credential] = useState('Demo-lition');
     const [password] = useState('password');
 
-    //log in with preset credential
+    //log in with preset credentials from state store
     const handleSubmit = (e) => {
-        return dispatch(login({
+        return dispatch(sessionActions.login({
             credential,
             password,
         }))
