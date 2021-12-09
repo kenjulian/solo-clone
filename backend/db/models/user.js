@@ -67,6 +67,10 @@ module.exports = (sequelize, DataTypes) => {
   //     hooks: true,
   //   });
   // };
+  User.associate = function(models) {
+    // associations can be defined here
+     User.hasMany(models.Song, {foreignKey: 'userId', onDelete: 'CASCADE', hooks: true});
+    
 
   User.prototype.toSafeObject = function () {
     // remember, this cannot be an arrow function
@@ -110,9 +114,6 @@ module.exports = (sequelize, DataTypes) => {
   return User;
 };
 
-User.associate = function(models) {
-  // associations can be defined here
-   User.hasMany(models.Song, {foreignKey: 'userId', onDelete: 'CASCADE', hooks: true});
-  
+
 return User;
 };
