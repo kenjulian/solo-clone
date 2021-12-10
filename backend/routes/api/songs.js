@@ -17,13 +17,13 @@ router.get("/", asyncHandler(async (req, res) => {
   })
   );
 
-//get one song
-router.get("/:id(\\d+)", asyncHandler(async (req, res) => {
-        const oneSong = await Song.findByPk(req.params.id);
+// //get one song
+// router.get("/:id(\\d+)", asyncHandler(async (req, res) => {
+//         const oneSong = await Song.findByPk(req.params.id);
         
-        return res.json(oneSong);
-    })
-  );
+//         return res.json(oneSong);
+//     })
+//   );
 
 //post a song
 router.post("/", requireAuth, validatePostInput, asyncHandler(async (req, res) => {

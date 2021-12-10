@@ -2,6 +2,7 @@ import {csrfFetch} from "./csrf";
 
 //const TRACK_PLAYER = 'player/trackplayer';
 const LIST_SONGS = 'song/listSongs';
+const GET_SONG = 'song/getsong';
 
 //action creator to listen to a track
 // export const trackPlayer = (song) => ({
@@ -30,6 +31,7 @@ export const listSongs = () => async (dispatch) => {
     }
 }
 
+//action creator and thunk to 
 // export const trackReducer = (state = {}, action) => {
 //     switch(action.type) {
 //         case TRACK_PLAYER: {
