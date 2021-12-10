@@ -1,0 +1,21 @@
+form {
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    justify-content: center;
+}
+
+form button {
+    margin-top: 4px;
+}
+
+form ul {
+    color: #1636e9;
+    list-style: none;
+    text-align: center;
+}
+
+form li {
+    margin: 20px 0;
+}
+

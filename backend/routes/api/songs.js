@@ -11,10 +11,10 @@ const router = express.Router();
 
 
 //get all the songs
-router.get("/", asyncHandler( async(req, res) => {
-        const songs = await Song.findAll();
-        return res.json(songs);
-    })
+router.get("/", asyncHandler(async (req, res) => {
+    const songs = await Song.findAll();
+    return res.json(songs);
+  })
   );
 
 //get one song
