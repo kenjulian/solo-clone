@@ -5,7 +5,7 @@ const asyncHandler = require('express-async-handler');
 const { validatePostInput } = require('../../utils/validation');
 //authenticates user to access and use the song
 const {requireAuth} = require('../../utils/auth');
-const {Song} = require('../../db/models/song');
+const {Song} = require('../../db/models');
 
 const router = express.Router();
 
@@ -33,7 +33,7 @@ router.post("/", requireAuth, validatePostInput, asyncHandler(async (req, res) =
 })) //why req.body doesn't work for .create
 
 //update a song
-router.patch("/:id(\\d+)", requireAuth, validatePostInput, asyncHandler(async (req, res) => {
+router.put("/:id(\\d+)", requireAuth, validatePostInput, asyncHandler(async (req, res) => {
     const update = await Song.update(
       { songUrl, picUrl, title},
       { where: {id: req.params.id},
