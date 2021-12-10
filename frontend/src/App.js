@@ -7,6 +7,8 @@ import SignupFormPage from "./components/SignupFormPage";
 import * as sessionActions from "./store/session";
 import Navigation from "./components/Navigation";
 
+import SongList from "./components/SongList/SongList";
+
 function App() {
   const dispatch = useDispatch();
   const [isLoaded, setIsLoaded] = useState(false);
@@ -19,6 +21,9 @@ function App() {
       <Navigation isLoaded={isLoaded} />
       {isLoaded && (
         <Switch>
+          <Route path= '/' exact>
+            <SongList />
+          </Route>
           <Route path="/login">
             <LoginFormPage />
           </Route>

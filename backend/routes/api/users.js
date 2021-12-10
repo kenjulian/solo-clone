@@ -32,7 +32,7 @@ const validateSignup = [
 
 //Signup
 router.post(
-    '/',
+    "/",
     validateSignup,
     asyncHandler(async (req, res) => {
       const { email, password, username } = req.body;
