@@ -6,6 +6,9 @@ export const trackPlayer = (song) => ({
     song
 });
 
+// // let newState = {
+// //     song:null
+// };
 export const trackReducer = (state = {}, action) => {
     switch(action.type) {
         case TRACK_PLAYER: {

@@ -1,3 +1,4 @@
+
 import {csrfFetch} from "./csrf";
 
 
@@ -20,7 +21,7 @@ export const listSongs = () => async (dispatch) => {
 
     if (res.ok) {
         const list = await res.json()
-        console.log(list, "yoo")
+        //console.log(list, "yoo")
         dispatch(allSongs(list));
 
         
@@ -76,7 +77,7 @@ export const deleteSong = (song) => ({
 }); 
 
 //delete song action and thunk
-export const deleteSong = (id) => async (dispatch) => {
+export const removeSong = (id) => async (dispatch) => {
     const res = await csrfFetch(`/api/songs/${id}`, {
         method: 'DELETE'
     });
@@ -85,31 +86,35 @@ export const deleteSong = (id) => async (dispatch) => {
         dispatch()
     }
 }
-
+ let newState = {};
 //song reducer
 export default function songReducer(state = {}, action) {
     switch (action.type) {
         case LIST_SONGS: {
-            const newState = {...state};
+            newState = {...state};
             action.list.forEach(song => {
                 newState[song.id] = song;
             });
 
             return newState;
         }
-        case POST_SONG: {
-            const newState = {...state};
-            newState[action.addSong.id] = action.addSong;
-            return newState;
+        case POST_SONG: 
+            return {...state, [action.addSong.id]: action.addSong.id
+            }
+            // const newState = {...state};
+            // newState[action.addSong.id] = action.addSong;
+            // return newState;
 
-        }
-        case UPDATE_SONG: {
-            const newState = {};
-            newState[action.song.id] = action.song;
-            return newState;
-        }
+        
+        case UPDATE_SONG: 
+            return {...state, [action.song.id]: action.song
+            }
+            // const newState = {};
+            // newState[action.song.id] = action.song;
+            // return newState;
+        
         case DELETE_SONG: {
-            const newState = {...state};
+            newState = {...state};
             delete newState[action.song.id]
             return newState;
         }
