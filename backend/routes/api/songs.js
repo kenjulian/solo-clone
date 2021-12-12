@@ -13,7 +13,7 @@ const router = express.Router();
 //get all the songs
 router.get("/", asyncHandler(async (req, res) => {
     const songs = await Song.findAll();
-    console.log(songs, 'heeeeeee')
+    //console.log(songs, 'heeeeeee')
     return res.json(songs);
   })
   );
@@ -28,13 +28,15 @@ router.get("/", asyncHandler(async (req, res) => {
 
 //post a song
 router.post("/", requireAuth, validatePostInput, asyncHandler(async (req, res) => {
+    let userId = req.user.id;
     const {songUrl, picUrl, title} = req.body;
-    const song = await Song.create({songUrl, picUrl, title});
-    res.json(song)
-})) //why req.body doesn't work for .create
+    const song = await Song.create({userId, songUrl, picUrl, title});
+    // res.json(song)
+})) 
 
 //update a song
 router.put("/:id(\\d+)", requireAuth, validatePostInput, asyncHandler(async (req, res) => {
+    const {songUrl, picUrl, title} = req.body;
     const update = await Song.update(
       { songUrl, picUrl, title},
       { where: {id: req.params.id},
