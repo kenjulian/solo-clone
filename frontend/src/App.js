@@ -8,6 +8,7 @@ import * as sessionActions from "./store/session";
 import Navigation from "./components/Navigation";
 
 import SongList from "./components/SongList/SongList";
+import SongForm from "./components/SongForm/SongForm";
 
 function App() {
   const dispatch = useDispatch();
@@ -21,7 +22,7 @@ function App() {
       <Navigation isLoaded={isLoaded} />
       {isLoaded && (
         <Switch>
-          <Route path= '/' exact>
+          <Route path="/" exact>
             <SongList />
           </Route>
           <Route path="/login">
@@ -30,6 +31,12 @@ function App() {
           <Route path="/signup">
             <SignupFormPage />
           </Route>
+          <Route path="/upload">
+            <SongForm />
+          </Route>
+          <Route path="/songs/:id">
+            <SongForm />
+          </Route>
         </Switch>
       )}
     </>
@@ -37,4 +44,3 @@ function App() {
 }
 
 export default App;
-

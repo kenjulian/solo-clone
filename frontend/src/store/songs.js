@@ -1,4 +1,3 @@
-
 import {csrfFetch} from "./csrf";
 
 
@@ -57,38 +56,40 @@ export const update = (song) => ({
     song
 });
 
-export const updateSong = (song) => async (dispatch) => {
-    const res = await csrfFetch(`/api/songs/${song.id}`, {
+export const updateSong = (id ,song) => async (dispatch) => {
+    console.log(id)
+    const res = await csrfFetch(`/api/songs/${id}`, {
         method: 'PUT',
         body: JSON.stringify(song)
 
     })
 
     if (res.ok) {
-        const song = await res.josn();
+        const song = await res.json();
         dispatch(update(song));
         return song;
     }
 }
 
 export const deleteSong = (song) => ({
-    tpye: DELETE_SONG,
+    type: DELETE_SONG,
     song
 }); 
 
 //delete song action and thunk
-export const removeSong = (id) => async (dispatch) => {
-    const res = await csrfFetch(`/api/songs/${id}`, {
+export const removeSong = (song) => async (dispatch) => {
+    const res = await csrfFetch(`/api/songs/${song.id}`, {
         method: 'DELETE'
     });
 
     if (res.ok) {
-        dispatch()
+        dispatch(deleteSong(song))
     }
 }
  let newState = {};
 //song reducer
 export default function songReducer(state = {}, action) {
+    console.log(action.type,"action.type")
     switch (action.type) {
         case LIST_SONGS: {
             newState = {...state};

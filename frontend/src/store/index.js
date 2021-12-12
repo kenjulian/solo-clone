@@ -8,7 +8,7 @@ import { trackReducer } from "./trackplayer";
 const rootReducer = combineReducers({
   session:sessionReducer,
   songs:songReducer,
-  trackplayer: trackReducer
+  trackplayer:trackReducer
 });
 
 let enhancer;
